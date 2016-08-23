@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class TaskController extends Controller
+class UserController extends Controller
 {
     use ApiResponse;
 
@@ -20,14 +21,16 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $tasks = Task::all();
+        $users = User::all();
 
 
         return response()->json(array(
             'error' => false,
-            'tasks' => $tasks->toArray()),
+            'users' => $users->toArray()),
             200
-        );
+        )->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+            ->header('Access-Control-Allow-Headers', 'Authorization,X-CSRF-Token,x-csrf-token');;
 
 
     }
@@ -61,9 +64,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return $this->sendResult($task);
+        return $this->sendResult($user);
     }
 
     /**

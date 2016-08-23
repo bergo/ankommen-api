@@ -19,10 +19,13 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+
+Route::resource('asset', 'UserController');
+
 Route::resource('asset', 'AssetController');
 
 Route::resource('location', 'LocationController');
 
 Route::resource('task', 'TaskController');
 
-Route::resource('user', 'UserController');
+Route::resource('users', 'UserController');
